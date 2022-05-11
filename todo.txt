@@ -1,0 +1,5 @@
+
+save scripting file as .py instead of just .blend
+https://blender.stackexchange.com/questions/56993/how-can-i-export-my-blender-model-as-a-python-script 
+round out top middle of flower
+add stamen and receptacle (bottom leaves and node)

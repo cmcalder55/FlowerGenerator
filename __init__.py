@@ -1,8 +1,4 @@
-'''
-Install Blender as a Python module: https://wiki.blender.org/wiki/Building_Blender/Other/BlenderAsPyModule
-Install blenderpy module: https://github.com/TylerGubala/blenderpy  
-Python API documentation: https://docs.blender.org/api/current/index.html   
-'''
+
 bl_info = {
     'name': 'Flower Generator',
     'description': 'Generate cherry blossoms.',
@@ -16,14 +12,18 @@ bl_info = {
 }
 
 import sys 
-from os import system
-
-sys.path.append("C:\\Users\\camer\\blender_ws\\FlowerGenerator")
-
+from os import system, path
 from bpy import data, types, ops
 from bpy.utils import register_class, unregister_class
-from cherryblossom import make_flower
+import make_flower
 
+# current filepath and callable directories
+filepath = data.filepath
+dir = path.dirname(filepath)
+
+# Ensure current directory is callable by the base path
+if not dir in sys.path:
+   sys.path.append(dir)
 
 # clear interpreter console
 clear = lambda: system('cls')
@@ -32,24 +32,33 @@ clear()
 class GenerateFlower(types.Operator):
 
     # class properties
-    bl_idname = 'mesh.generate_petal'
+    bl_idname = 'object.generate_petals'
     bl_label = 'flower'
     bl_options = {'REGISTER', 'UNDO'}
     
+    @classmethod
+    def poll(self, context):
+        return context.mode == 'OBJECT'
+    
     def execute(self, context):
-
-        make_flower()
+        return self.invoke(context, None)
+        
+    def invoke(self, context, event):
+        make_flower.generate_petals()
         
         return {'FINISHED'}
 	
-# module registration
+# class registration/unregistration
 def register():
 	register_class(GenerateFlower)
 
 def unregister():
 	unregister_class(GenerateFlower)
 
-if __name__ == "__main__":
-    
-    register()
-    # ops.mesh.generate_petal()
+# register class and call with default settings from Blender
+register()
+ops.object.generate_petals('INVOKE_DEFAULT')
+
+# for testing only
+# if __name__ == "__main__":
+#     register()

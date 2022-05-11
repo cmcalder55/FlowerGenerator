@@ -28,7 +28,7 @@ def generate_sepal():
     ops.transform.rotate(value = math.radians(180), orient_axis = 'X')
     ops.transform.translate(value=(0.0, 0.0, -1.5)) 
 
-def flower_petals():
+def generate_petals():
 
 #    ops.object.mode_set(mode='OBJECT')
 
@@ -114,5 +114,5 @@ def flower_petals():
 
     generate_sepal()
 
-if __name__ == '__main__':
-    flower_petals()
+# if __name__ == '__main__':
+#     generate_petals()
