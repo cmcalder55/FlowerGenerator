@@ -1,3 +1,10 @@
+'''Start in Blender 3, Scripting tab in object mode.'''
+
+import sys 
+from os import system, path
+from bpy import data, types, ops
+from bpy.utils import register_class, unregister_class
+import make_flower
 
 bl_info = {
     'name': 'Flower Generator',
@@ -10,12 +17,6 @@ bl_info = {
     'doc_url':'https://github.com/cmcalder55/FlowerGenerator',
     'category': 'Add Mesh',
 }
-
-import sys 
-from os import system, path
-from bpy import data, types, ops
-from bpy.utils import register_class, unregister_class
-import make_flower
 
 # current filepath and callable directories
 filepath = data.filepath
@@ -30,7 +31,6 @@ clear = lambda: system('cls')
 clear() 
 
 class GenerateFlower(types.Operator):
-
     # class properties
     bl_idname = 'object.generate_petals'
     bl_label = 'flower'
@@ -45,7 +45,6 @@ class GenerateFlower(types.Operator):
         
     def invoke(self, context, event):
         make_flower.generate_petals()
-        
         return {'FINISHED'}
 	
 # class registration/unregistration
