@@ -22,6 +22,8 @@ bl_info = {
 filepath = data.filepath
 dir = path.dirname(filepath)
 
+
+desired_path = path.join(filepath, "FlowerGenerator")
 # Ensure current directory is callable by the base path
 if not dir in sys.path:
    sys.path.append(dir)
