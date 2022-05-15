@@ -8,7 +8,7 @@ import make_flower
 
 bl_info = {
     'name': 'Flower Generator',
-    'description': 'Generate cherry blossoms.',
+    'description': 'Generate a flower in Blender using a Python script and BlenderPy addon.',
     'author': 'Cameron Calder, Paul Tziranis',
     'version': (1, 0),
     'blender': (3, 0, 1),
