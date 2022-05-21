@@ -12,31 +12,24 @@ def reset_scene():
     clear = lambda: system('cls')
     clear() 
 
-    # print list of all objects in scene
-    for o in context.scene.objects:
-        print('\n','Objects in scene: ', o.name,'\n')
-
-    # print list of all scene names
-    print(' Scene collection: ',data.scenes.keys(),'\n')
-    
     # select all objects currently in the scene and delete
     ops.object.select_all(action='SELECT')
     ops.object.delete(use_global=False)
     print(' Objects deleted.')
 
+    # print list of all scene names
+    print(' Scene collection: ',data.scenes.keys(),'\n')
+
+    for col in data.collections:
+        print('Collection: ',col.name)
+        for o in col.objects:
+            print('Object: ',o.name)
+    print('')
+
     # check if petal collection exists, add and link to scene if needed
     name = 'petal'
-    # col = data.collections
     col = data.collections.new(name)
     context.scene.collection.children.link(col)
-
-    # for o in data.collections:
-    #     if o.name == name:
-    #         print('Collection found.')
-    #     else:
-    #         col = data.collections.new(name)
-    #         context.scene.collection.children.link(col)
-    #         print('Collection created.')
 
 def generate_stamen_base():
     '''Generate base to connect stamen to the stem.'''
